@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cbwl2je1olu2a"]
+
+[ext_resource type="Script" uid="uid://d0565ui2pb0ym" path="res://scenes/die.gd" id="1_5x8g4"]
+
+[node name="die" type="Area2D" unique_id=156986606]
+script = ExtResource("1_5x8g4")
+
+[node name="Timer" type="Timer" parent="." unique_id=736716634]
+wait_time = 0.8
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
