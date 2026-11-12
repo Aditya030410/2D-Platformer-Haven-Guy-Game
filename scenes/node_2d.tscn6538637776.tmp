@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://c4aoebjj8nhtn"]
+
+[ext_resource type="Texture2D" uid="uid://bsclurwi5f6mc" path="res://Traps/Rock Head/Blink (42x42).png" id="1_4dvvg"]
+[ext_resource type="Script" uid="uid://cpe3j7ifayex6" path="res://scenes/enemy.gd" id="1_rnjyy"]
+[ext_resource type="PackedScene" uid="uid://cbwl2je1olu2a" path="res://scenes/die.tscn" id="2_rnjyy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0hol4"]
+atlas = ExtResource("1_4dvvg")
+region = Rect2(0, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6r6c"]
+atlas = ExtResource("1_4dvvg")
+region = Rect2(42, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdubu"]
+atlas = ExtResource("1_4dvvg")
+region = Rect2(84, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d21ai"]
+atlas = ExtResource("1_4dvvg")
+region = Rect2(126, 0, 42, 42)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cekx0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0hol4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6r6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdubu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d21ai")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cekx0"]
+size = Vector2(25, 22.5)
+
+[node name="enemy" type="Node2D" unique_id=881010874]
+script = ExtResource("1_rnjyy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=126882446]
+position = Vector2(-2.5000002, -11.999999)
+scale = Vector2(0.8333333, 0.7619047)
+sprite_frames = SubResource("SpriteFrames_cekx0")
+autoplay = "default"
+frame_progress = 0.879676
+
+[node name="die" parent="." unique_id=156986606 instance=ExtResource("2_rnjyy")]
+z_index = 4
+position = Vector2(-0.99999994, -10.999999)
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="die" unique_id=535195107]
+position = Vector2(-1.9999981, -1.000001)
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_cekx0")
+
+[node name="Timer2" type="Timer" parent="die" unique_id=285888388]
+wait_time = 0.8
+one_shot = true
+
+[node name="RayCastright" type="RayCast2D" parent="." unique_id=1581317133]
+position = Vector2(2, -9)
+target_position = Vector2(14, 0)
+
+[node name="RayCastleft" type="RayCast2D" parent="." unique_id=587100203]
+position = Vector2(2, -9)
+target_position = Vector2(-23, -1)
